@@ -1,0 +1,20 @@
+@if (route.children.length === 0) {
+    <div class="example-container">
+        <mat-form-field>
+            <input matInput type="email" placeholder="Your email" required [(ngModel)]="email">
+        </mat-form-field>
+
+        <br />
+
+        <button mat-raised-button color="primary" (click)="sendMail()" [disabled]="!email">Send Mail</button>
+
+        @if (message) {
+            <mat-toolbar>{{message}}</mat-toolbar>
+        }
+        @if (error) {
+            <mat-toolbar>{{error}}</mat-toolbar>
+        }    
+    </div>
+}@else {
+    <router-outlet></router-outlet>
+}

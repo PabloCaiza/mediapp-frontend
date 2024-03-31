@@ -1,0 +1,31 @@
+@if (!validRandom) {
+<mat-toolbar>
+    Link is not valid or has expired!
+</mat-toolbar>
+}@else{
+<form [formGroup]="form" (submit)="onSubmit()">
+    <div class="example-container">
+        <mat-form-field>
+            <input matInput type="password" name="password" placeholder="New Password" formControlName="password"
+                [formGroup]="form" required>
+        </mat-form-field>
+
+        <mat-form-field>
+            <input matInput type="password" placeholder="Repeat Password" formControlName="confirmPassword"
+                [formGroup]="form" required>
+        </mat-form-field>
+
+        <button mat-raised-button color="primary" type="submit" [disabled]="form.invalid">Change Password</button>
+
+        @if (form.controls['confirmPassword'].errors?.['not_the_same']) {
+            <mat-toolbar>Password not match</mat-toolbar>
+        }        
+        @if (message) {
+            <mat-toolbar>{{message}}</mat-toolbar>
+        }
+        @if (error) {
+            <mat-toolbar>{{error}}</mat-toolbar>
+        }        
+    </div>
+</form>
+}
